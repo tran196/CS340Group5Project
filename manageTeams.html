@@ -1,20 +1,55 @@
-         <a href="index.html">Home</a>
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+table, td {
+  border: 1px solid black;
+}
+</style>
+
+       <a href="index.html">Home</a>
    		 <a href="manageTeams.html">Manage Teams</a>
    		 <a href="managePlayers.html">Manage Players</a>
    		 <a href="manageOwners.html">Manage Owners</a>
 
+      <div class="topnav">
+          <input type="text" placeholder="Search...">
+          <button type="button">Go</button>
+       </div>
+
 <h3>Manage Teams</h3>
 
 
-<p>Here we will have the teams each owner has. </p>
+<p>Here we will have the teams each owner has. To create a team enter the team name below. </p>
+
+<form>
+  Team name:<br>
+  <input type="text" name="firstname"><br>
+  Team owner:<br>
+  <input type="text" name="lastname">
+</form>
 
 
-<table>
-  <thead>
-    <tr>
-      <th>Team name</th>
-      <th>Win-Loss record</th>
-      <th>Delete</th>
-    </tr>
-  </thead>
+<p>Here we will display the team names and team owners. To delete hit "delete". </p>
+
+<table id="myTable">
+  <tr>
+    <td>Team Name</td>
+    <td>Team Owner</td>
+  </tr>
+  <tr>
+    <td>Team Name</td>
+    <td>Team Owner</td>
+  </tr>
 </table>
+<br> 
+
+<button onclick="myFunction()">Delete</button>
+
+<script>
+function myFunction() {
+  document.getElementById("myTable").deleteRow(0);
+}
+</script>
+
+</html>
