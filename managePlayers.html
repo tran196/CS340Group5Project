@@ -28,21 +28,33 @@ table, td {
   First Name:<br>
   <input type="text" name="firstname"><br>
   Last Name:<br>
-  <input type="text" name="lastname">
+  <input type="text" name="lastname"><br>
+  <input type="submit" value="Submit">
 </form>
 
 
 <p>Here we will display the player names and team owners. To delete hit "delete". </p>
 
 <table id="myTable">
+    <th>Player name</th>
+    <th>Team owner</th> 
+    <th>League</th> 
+  <tr>
+    <td>Saquon Barkley</td>
+    <td>Chuck Norris</td>
+    <td>Karate central</td>
+    <td><input type="button" value="Delete" onclick="deleteRow(this)"></td>
+  </tr>
   <tr>
     <td>Player Name</td>
     <td>Team Owner</td>
+    <td>League</td>
     <td><input type="button" value="Delete" onclick="deleteRow(this)"></td>
   </tr>
   <tr>
     <td>Player Name</td>
     <td>Player Owner</td>
+     <td>League</td>
     <td><input type="button" value="Delete" onclick="deleteRow(this)"></td>
   </tr>
 </table>

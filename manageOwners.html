@@ -29,21 +29,35 @@ table, td {
   First Name:<br>
   <input type="text" name="firstname"><br>
   Last Name:<br>
-  <input type="text" name="lastname">
+  <input type="text" name="lastname"><br>
+  <input type="submit" value="Submit">
 </form>
 
 
 <p>Here we will have the owners within the league. To delete hit "delete". </p>
 
 <table id="myTable">
-  <tr>
-    <td>Team Name</td>
-    <td>Team Owner</td>
+   <tr>
+    <th>Team name</th>
+    <th>Team owner</th> 
+    <th>Team lague</th>
+  </tr>
+    <tr>
+    <td>Touchdown city</td>
+    <td>Chuck Norris</td>
+    <td>Karate central</td>
     <td><input type="button" value="Delete" onclick="deleteRow(this)"></td>
   </tr>
   <tr>
     <td>Team Name</td>
     <td>Team Owner</td>
+    <td>Lague Name</td>
+    <td><input type="button" value="Delete" onclick="deleteRow(this)"></td>
+  </tr>
+  <tr>
+    <td>Team Name</td>
+    <td>Team Owner</td>
+    <td>Lague Name</td>
     <td><input type="button" value="Delete" onclick="deleteRow(this)"></td>
   </tr>
 </table>
