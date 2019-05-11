@@ -13,7 +13,9 @@ CREATE TABLE nfl_football_players (
     position_id int,
     active BOOLEAN,
     nfl_team_id int, 
-    PRIMARY KEY (player_id)
+    PRIMARY KEY (player_id), 
+    FOREIGN KEY (position_id) REFERENCES position(position_id),
+    FOREIGN KEY (nfl_team_id) REFERENCES nfl_teams(nfl_team_id)
 );
 
 -- Dumping data for table ‘nfl_football_players’
@@ -47,7 +49,8 @@ CREATE TABLE fantasy_leagues (
     commissioner_id int(11), 
     league_name varchar(225),
     number_of_teams int(11),
-    PRIMARY KEY (league_id)
+    PRIMARY KEY (league_id),
+    FOREIGN KEY (commissioner_id) REFERENCES fantasy_owners(owner_id)
 );
 
 -- Dumping data for table fantasy_leagues
@@ -63,7 +66,8 @@ CREATE TABLE fantasy_teams (
     team_id int(11) NOT NULL AUTO_INCREMENT,
     league_id int(11), 
     owner_id int(11),
-    PRIMARY KEY (team_id)
+    PRIMARY KEY (team_id),
+    FOREIGN KEY (league_id) REFERENCES fantasy_leagues(league_id)
 );
 
 -- Dumping data for table fantasy_teams
@@ -79,7 +83,8 @@ CREATE TABLE rosters (
     roster_id int(11) NOT NULL AUTO_INCREMENT,
     team_id int(11), 
     player_id int(11),
-    PRIMARY KEY (roster_id, player_id)
+    PRIMARY KEY (roster_id, player_id),
+    FOREIGN KEY (team_id) REFERENCES fantasy_teams(team_id)
 );
 
 -- Dumping data for table rosters
