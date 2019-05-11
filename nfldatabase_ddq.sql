@@ -66,6 +66,7 @@ CREATE TABLE fantasy_teams (
     team_id int(11) NOT NULL AUTO_INCREMENT,
     league_id int(11), 
     owner_id int(11),
+    team_name varchar(225),
     PRIMARY KEY (team_id),
     FOREIGN KEY (league_id) REFERENCES fantasy_leagues(league_id)
 );
