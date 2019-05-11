@@ -16,17 +16,50 @@
 <h3>Manage Owners</h3>
 
 
-<p>Here we will have the owners for each league. The commissioner of each league can edit the owners within that league. </p>
+<style>
+table, td {
+  border: 1px solid black;
+}
+</style>
 
 
-<table>
-  <thead>
-    <tr>
-      <th>Owner name</th>
-      <th>Team name</th>
-      <th>Delete</th>
-    </tr>
-  </thead>
+<p>Here we will have the owners each league has. To add an owner you can type their name below. </p>
+
+<form>
+  First Name:<br>
+  <input type="text" name="firstname"><br>
+  Last Name:<br>
+  <input type="text" name="lastname">
+</form>
+
+
+<p>Here we will have the owners within the league. To delete hit "delete". </p>
+
+<table id="myTable">
+  <tr>
+    <td>Team Name</td>
+    <td>Team Owner</td>
+    <td><input type="button" value="Delete" onclick="deleteRow(this)"></td>
+  </tr>
+  <tr>
+    <td>Team Name</td>
+    <td>Team Owner</td>
+    <td><input type="button" value="Delete" onclick="deleteRow(this)"></td>
+  </tr>
 </table>
+<br> 
+
+<button onclick="myFunction()">Delete</button>
+
+<script>
+function deleteRow(r) {
+  var i = r.parentNode.parentNode.rowIndex;
+  document.getElementById("myTable").deleteRow(i);
+}
+</script>
+
+
+
+</html>
 
 </html>

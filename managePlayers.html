@@ -15,15 +15,47 @@
 
 <h3>Manage Players</h3>
 
-<p> Here you can manage your players. </p>
+<style>
+table, td {
+  border: 1px solid black;
+}
+</style>
 
 
-<table>
-  <thead>
-    <tr>
-      <th>Player name</th>
-      <th>Player position</th>
-      <th>Player ranking</th>
-    </tr>
-  </thead>
+<p>Here we will have the player each owner has. To add a player you can type their name below. </p>
+
+<form>
+  First Name:<br>
+  <input type="text" name="firstname"><br>
+  Last Name:<br>
+  <input type="text" name="lastname">
+</form>
+
+
+<p>Here we will display the player names and team owners. To delete hit "delete". </p>
+
+<table id="myTable">
+  <tr>
+    <td>Player Name</td>
+    <td>Team Owner</td>
+    <td><input type="button" value="Delete" onclick="deleteRow(this)"></td>
+  </tr>
+  <tr>
+    <td>Player Name</td>
+    <td>Player Owner</td>
+    <td><input type="button" value="Delete" onclick="deleteRow(this)"></td>
+  </tr>
 </table>
+<br> 
+
+
+<script>
+function deleteRow(r) {
+  var i = r.parentNode.parentNode.rowIndex;
+  document.getElementById("myTable").deleteRow(i);
+}
+</script>
+
+
+
+</html>

@@ -36,10 +36,12 @@ table, td {
   <tr>
     <td>Team Name</td>
     <td>Team Owner</td>
+    <td><input type="button" value="Delete" onclick="deleteRow(this)"></td>
   </tr>
   <tr>
     <td>Team Name</td>
     <td>Team Owner</td>
+    <td><input type="button" value="Delete" onclick="deleteRow(this)"></td>
   </tr>
 </table>
 <br> 
@@ -47,8 +49,9 @@ table, td {
 <button onclick="myFunction()">Delete</button>
 
 <script>
-function myFunction() {
-  document.getElementById("myTable").deleteRow(0);
+function deleteRow(r) {
+  var i = r.parentNode.parentNode.rowIndex;
+  document.getElementById("myTable").deleteRow(i);
 }
 </script>
 
