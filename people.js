@@ -3,7 +3,7 @@ module.exports = function(){
     var router = express.Router();
 
     function getPlanets(res, mysql, context, complete){
-        mysql.pool.query("SELECT planet_id as id, name FROM bsg_planets", function(error, results, fields){
+        mysql.pool.query("SELECT player_id, fname FROM nfl_football_players", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -12,6 +12,8 @@ module.exports = function(){
             complete();
         });
     }
+
+    /*
 
     function getPeople(res, mysql, context, complete){
         mysql.pool.query("SELECT bsg_people.character_id as id, fname, lname, bsg_planets.name AS homeworld, age FROM bsg_people INNER JOIN bsg_planets ON homeworld = bsg_planets.planet_id", function(error, results, fields){
@@ -22,8 +24,9 @@ module.exports = function(){
             context.people = results;
             complete();
         });
-    }
+    } */
 
+/*
     function getPeoplebyHomeworld(req, res, mysql, context, complete){
       var query = "SELECT bsg_people.character_id as id, fname, lname, bsg_planets.name AS homeworld, age FROM bsg_people INNER JOIN bsg_planets ON homeworld = bsg_planets.planet_id WHERE bsg_people.homeworld = ?";
       console.log(req.params)
@@ -38,7 +41,7 @@ module.exports = function(){
         });
     }
 
-    /* Find people whose fname starts with a given string in the req */
+    /* Find people whose fname starts with a given string in the req 
     function getPeopleWithNameLike(req, res, mysql, context, complete) {
       //sanitize the input as well as include the % character
        var query = "SELECT bsg_people.character_id as id, fname, lname, bsg_planets.name AS homeworld, age FROM bsg_people INNER JOIN bsg_planets ON homeworld = bsg_planets.planet_id WHERE bsg_people.fname LIKE " + mysql.pool.escape(req.params.s + '%');
@@ -52,7 +55,9 @@ module.exports = function(){
             context.people = results;
             complete();
         });
-    }
+    } */
+
+    /*
 
     function getPerson(res, mysql, context, id, complete){
         var sql = "SELECT character_id as id, fname, lname, homeworld, age FROM bsg_people WHERE character_id = ?";
@@ -65,7 +70,7 @@ module.exports = function(){
             context.person = results[0];
             complete();
         });
-    }
+    } */
 
     /*Display all people. Requires web based javascript to delete users with AJAX*/
 
@@ -85,7 +90,7 @@ module.exports = function(){
         }
     });
 
-    /*Display all people from a given homeworld. Requires web based javascript to delete users with AJAX*/
+    /*Display all people from a given homeworld. Requires web based javascript to delete users with AJAX
     router.get('/filter/:homeworld', function(req, res){
         var callbackCount = 0;
         var context = {};
@@ -102,7 +107,9 @@ module.exports = function(){
         }
     });
 
-    /*Display all people whose name starts with a given string. Requires web based javascript to delete users with AJAX */
+    */
+
+    /*Display all people whose name starts with a given string. Requires web based javascript to delete users with AJAX 
     router.get('/search/:s', function(req, res){
         var callbackCount = 0;
         var context = {};
@@ -116,9 +123,9 @@ module.exports = function(){
                 res.render('people', context);
             }
         }
-    });
+    }); */
 
-    /* Display one person for the specific purpose of updating people */
+    /* Display one person for the specific purpose of updating people 
 
     router.get('/:id', function(req, res){
         callbackCount = 0;
@@ -134,7 +141,7 @@ module.exports = function(){
             }
 
         }
-    });
+    }); */
 
     /* Adds a person, redirects to the people page after adding */
 
@@ -155,7 +162,7 @@ module.exports = function(){
         });
     });
 
-    /* The URI that update data is sent to in order to update a person */
+    /* The URI that update data is sent to in order to update a person 
 
     router.put('/:id', function(req, res){
         var mysql = req.app.get('mysql');
@@ -173,9 +180,9 @@ module.exports = function(){
                 res.end();
             }
         });
-    });
+    }); */
 
-    /* Route to delete a person, simply returns a 202 upon success. Ajax will handle this. */
+    /* Route to delete a person, simply returns a 202 upon success. Ajax will handle this. 
 
     router.delete('/:id', function(req, res){
         var mysql = req.app.get('mysql');
@@ -191,7 +198,7 @@ module.exports = function(){
                 res.status(202).end();
             }
         })
-    })
+    }) */
 
     return router;
 }();
