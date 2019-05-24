@@ -3,7 +3,7 @@ module.exports = function(){
     var router = express.Router();
 
     function getPlanets(res, mysql, context, complete){
-        mysql.pool.query("SELECT id, name FROM nfl_football_players", function(error, results, fields){
+        mysql.pool.query("SELECT planet_id as id, name FROM bsg_planets", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
