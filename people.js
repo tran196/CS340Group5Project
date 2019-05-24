@@ -16,7 +16,7 @@ module.exports = function(){
 
 
     function getPeople(res, mysql, context, complete){
-        mysql.pool.query("SELECT fantasy_teams.team_id FROM fantasy_teams", function(error, results, fields){
+        mysql.pool.query("SELECT fantasy_teams.team_id, league_id, owner_id FROM fantasy_teams", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -149,8 +149,8 @@ module.exports = function(){
         console.log(req.body.homeworld)
         console.log(req.body)
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO bsg_people (fname, lname, homeworld, age) VALUES (?,?,?,?)";
-        var inserts = [req.body.fname, req.body.lname, req.body.homeworld, req.body.age];
+        var sql = "INSERT INTO fantasy_teams (team_id, league_id, owner_id) VALUES (?,?,?)";
+        var inserts = [req.body.team_id, req.body.league_id, req.body.owner_id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(JSON.stringify(error))
