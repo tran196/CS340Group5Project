@@ -1,0 +1,14 @@
+<html>
+<h1>Update {{person.fname}} {{person.lname}}:</h1>
+<form id="update-person" action="/people" method="post">
+    Team ID: <input type="number" name="team_id" value="{{person.team_id}}"><br>
+    League ID: <input type="number" name="league_id" value="{{person.league_id}}"><br>
+    Owner ID: <input type="number" name="owner_id" value="{{person.owner_id}}"><br> 
+        {{#each planets}}
+        <option value="{{id}}">{{name}}</option>
+        {{/each}}
+    </select><br>
+    Age: <input type="number" name="age" value="{{person.age}}"><br>
+</form>
+<button onclick="updatePerson({{person.id}})">Update</button>
+</html>

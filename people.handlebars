@@ -1,33 +1,42 @@
-<h1>NFL players</h1>
-<h1>JS + database</h1>
+<html>
+{{#each foo}}
+{{this}}
+{{/each}}
+<h3>Add New Team:</h3>
+<form id="addperson" action="/people" method="post">
+    Team ID: <input type="number" name="team_id"><br>
+    League ID: <input type="number" name="league_id"><br>
+    Owner ID: <input type="number" name="owner_id"><br>
+    <input type="submit" value="Submit">
+ </form>
+<br/>
+
+
+<form id='search_people' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Search people for first name starting with:</label>
+    <input id='first_name_search_string' type='text' name='first_name_search_string' value=''>
+    <input type="button" value="Search" onclick="searchPeopleByFirstName()">
+</form>
+
+<h3>Current people:</h3>
 <table>
-    <thead> 
-        <th>First Name</th> 
-        <th>Last Name</th> 
-        <th>Team</th>
-        <th>Age</th>  
-    </thead> 
-    <tbody> 
-        {{#each people}} 
-        <tr> 
-            <td>{{fname}}</td> 
-            <td>{{lname}}</td> 
-            <td>{{nfl_team_id}}</td> 
-            <td>{{age}}</td>
+    <thead>
+        <th>team_id</th>
+        <th>league_id</th>
+        <th>owner_id</th>
+    </thead>
+    <tbody>
+        {{#each people}}
+        <tr>
+            <td>{{team_id}}</td>
+            <td>{{league_id}}</td>
+            <td>{{owner_id}}</td>
+            <!-- //need to add team name to sql dump file -->
             <td><button onclick="deletePerson({{id}})">Delete</button></td>
             <td><a href="/people/{{id}}">Update</a></td>
-        </tr> 
-        {{/each}} 
-    </tbody> 
-    <form id="addperson" action="/people" method="post">
-    First name: <input type="text" name="fname"><br>
-    Last name: <input type="text" name="lname"><br>
-    NFL team: <select name="nfl_team_id}"> 
-        {{#each planets}}
-        <option value="{{id}}">{{name}}</option>
+        </tr>
         {{/each}}
-    </select><br>
-    Age: <input type="number" name="age"><br>
-    <input type="submit" value="Submit">
-    </form>
-</table> 
+    </tbody>
+</table>
+</html>
