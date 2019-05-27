@@ -2,43 +2,44 @@
 {{#each foo}}
 {{this}}
 {{/each}}
-<div>
-<h3> Associate Certificate(s) with a Person </h3>
-    <form id="add_people_certificates" action="/people_certs" method="post">
-    Person: <select name='pid'>
-        {{#each people}}
-          <option value='{{pid}}'>{{fname}} {{lname}}</option>
-        {{/each}}
-    </select>
-    <br>
-    Certificates:<sup>Multi-select</sup> <select multiple name="certs"> 
-        {{!-- We display title but the value that is submitted through the form is actually the certificate's id --}}
-        {{#each certificates}}
-        <option value="{{cid}}">{{title}}</option>
-        {{/each}}
-    </select><br>
+<h3>Add player to roster:</h3>
+<form id="addperson" action="/people_certs" method="post">
+    Player ID <input type="number" name="player_id"><br>
+    First name: <input type="text" name="fname"><br>
+    Last name: <input type="text" name="lname"><br>
+    Age: <input type="number" name="age"><br>
     <input type="submit" value="Submit">
-    </form>
-</div>
+ </form>
 <br/>
-<h3> List of People with their Certifications </h3>
-<table>
-    <thead> 
-        <th>Name</th> 
-        <th>Certificate</th> 
-    </thead> 
-    <tbody> 
-        {{#each people_with_certs}} 
-        <tr> 
-            <td>{{name}}</td> 
-            <td>{{certificate}}</td> 
-            <td><button onclick="deletePeopleCert({{pid}},{{cid}})">Delete</button></td>
-            <td><a href='#' onclick='javascript: alert("You can implement it just like the Add form.")'>Update</a></td>
-        </tr>
-        {{else}}
-        <b> No people with any certifications found! Grant some using the form. </b>
-        {{/each}} 
 
+
+<form id='search_people' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Search players starting with:</label>
+    <input id='first_name_search_string' type='text' name='first_name_search_string' value=''>
+    <input type="button" value="Search" onclick="searchPeopleByFirstName()">
+</form>
+
+<h3>Current players:</h3>
+<table>
+    <thead>
+        <th>Player ID</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Age</th>
+    </thead>
+    <tbody>
+        {{#each people}}
+        <tr>
+            <td>{{player_id}}</td>
+            <td>{{fname}}</td>
+            <td>{{lname}}</td>
+            <td>{{age}}</td>
+            <!-- //need to add team name to sql dump file -->
+            <td><button onclick="deletePerson({{id}})">Delete</button></td>
+            <td><a href="/people_certs/{{id}}">Update</a></td>
+        </tr>
+        {{/each}}
     </tbody>
-</table> 
+</table>
 </html>
