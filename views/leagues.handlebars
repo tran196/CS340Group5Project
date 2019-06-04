@@ -14,7 +14,7 @@
 
 
 <form id='search_people' action='' method=''>
-<!--- this form does not submit directly, the button handles all the interaction with backend -->
+<!--  this form does not submit directly, the button handles all the interaction with backend  -->
     <label> Search people for first name starting with:</label>
     <input id='first_name_search_string' type='text' name='first_name_search_string' value=''>
     <input type="button" value="Search" onclick="searchPeopleByFirstName()">
@@ -35,11 +35,10 @@
             <td>{{commissioner_id}}</td>
             <td>{{league_name}}</td>
             <td>{{number_of_teams}}</td>
-            <!-- //need to add team name to sql dump file -->
-            <td><button onclick="deletePerson({{id}})">Delete</button></td>
+            <<td><button onclick="deletePerson({{id}})">Delete</button></td> 
             <td><a href="/leagues/{{id}}">Update</a></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
-</html>
+</html> 

@@ -1,6 +1,6 @@
 function updatePerson(id){
     $.ajax({
-        url: '/people/' + id,
+        url: '/leagues/' + id,
         type: 'PUT',
         data: $('#update-person').serialize(),
         success: function(result){
@@ -8,3 +8,4 @@ function updatePerson(id){
         }
     })
 };
+

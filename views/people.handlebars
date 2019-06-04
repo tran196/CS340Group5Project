@@ -7,7 +7,6 @@
     Team ID: <input type="number" name="team_id"><br>
     League ID: <input type="number" name="league_id"><br>
     Owner ID: <input type="number" name="owner_id"><br>
-    Team Name: <input type="text" name="team_name"><br>
     <input type="submit" value="Submit">
  </form>
 <br/>
@@ -26,7 +25,6 @@
         <th>team_id</th>
         <th>league_id</th>
         <th>owner_id</th>
-        <th>team_name</th>
     </thead>
     <tbody>
         {{#each people}}
@@ -34,7 +32,6 @@
             <td>{{team_id}}</td>
             <td>{{league_id}}</td>
             <td>{{owner_id}}</td>
-            <td>{{team_name}}</td>
             <!-- //need to add team name to sql dump file -->
             <td><button onclick="deletePerson({{id}})">Delete</button></td>
             <td><a href="/people/{{id}}">Update</a></td>
