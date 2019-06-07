@@ -1,8 +1,7 @@
 <html>
-<h1>Update {{person.id}}:</h1>
-<form id="update-person" action="/leagues" method="post">
-    Team ID: <input type="number" name="team_id" value="{{person.team_id}}"><br>
-    League ID: <input type="number" name="league_id" value="{{person.league_id}}"><br>
+<h1>Update League {{person.id}}:</h1>
+<form id="update-person" action="/leagues" method="post"> 
+    Commissioner ID: <input type="number" name="commissioner_id"value="{{person.commissioner_id}}"><br> 
     League Name: <input type="text" name="league_name" value="{{person.league_name}}"><br> 
     Number of Teams: <input type="number" name="number_of_teams" value="{{person.number_of_teams}}"><br>
 </form>
