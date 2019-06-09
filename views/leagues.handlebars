@@ -1,0 +1,43 @@
+<html>
+{{#each foo}}
+{{this}}
+{{/each}}
+<h3>Add New League:</h3>
+<form id="addperson" action="/leagues" method="post">
+    Commissioner ID: <input type="number" name="commissioner_id"><br>
+    League Name: <input type="text" name="league_name"><br>
+    Number of Teams: <input type="number" name="number_of_teams"><br>
+    <input type="submit" value="Submit">
+ </form>
+<br/>
+
+
+<!-- <form id='search_people' action='' method=''>
+  this form does not submit directly, the button handles all the interaction with backend  
+    <label> Search people for first name starting with:</label>
+    <input id='first_name_search_string' type='text' name='first_name_search_string' value=''>
+    <input type="button" value="Search" onclick="searchPeopleByFirstName()">
+</form> -->
+
+<h3>Current leagues:</h3>
+<table>
+    <thead>
+<!--         <th>league id</th> -->
+        <th>Commissioner ID</th>
+        <th>league name</th>
+        <th>number of teams</th>
+    </thead>
+    <tbody>
+        {{#each people}}
+        <tr>
+<!--             <td>{{league_id}}</td> -->
+            <th>{{commissioner_id}}</th>
+            <td>{{league_name}}</td>
+            <td>{{number_of_teams}}</td>
+            <td><button onclick="deletePerson({{id}})">Delete</button></td>
+            <td><a href="/leagues/{{id}}">Update</a></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+</html>
