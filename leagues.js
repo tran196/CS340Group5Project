@@ -163,7 +163,7 @@ module.exports = function(){
         console.log(req.body)
         console.log(req.params.id)
         var sql = "UPDATE fantasy_leagues SET commissioner_id=?, league_name=?, number_of_teams=? WHERE league_id = ?";
-        var inserts = [req.body.commissioner_id, req.body.name, req.body.number_of_teams, req.params.id];
+        var inserts = [req.body.commissioner_id, req.body.league_name, req.body.number_of_teams, req.params.id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(error)
@@ -175,6 +175,28 @@ module.exports = function(){
             }
         });
     });
+
+     /* this is from github 2 days ago */
+
+  
+    //  router.put('/:id', function(req, res){
+    //     var mysql = req.app.get('mysql');
+    //     console.log(req.body)
+    //     console.log(req.params.id)
+    //     var sql = "UPDATE fantasy_leagues SET commissioner_id=?, league_name=?, number_of_teams=? WHERE league_id = ?";
+    //     var inserts = [req.body.commissioner_id, req.body.name, req.body.number_of_teams, req.params.id];
+    //     sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+    //         if(error){
+    //             console.log(error)
+    //             res.write(JSON.stringify(error));
+    //             res.end();
+    //         }else{
+    //             res.status(200);
+    //             res.end();
+    //         }
+    //     });
+    // });
+
 
       /* Route to delete a person, simply returns a 202 upon success. Ajax will handle this. */
 
