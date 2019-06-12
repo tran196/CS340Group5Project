@@ -1,4 +1,9 @@
 <html>
+    <a href='/index.html'>Home</a>
+    <a href='/leagues'>Manage Leagues</a>
+    <a href='/people'>Manage Teams</a>
+    <a href='/people_certs'>Manage Players</a>
+    <a href='/owners'>Manage Owners</a>
 {{#each foo}}
 {{this}}
 {{/each}}
@@ -34,7 +39,7 @@
             <th>{{commissioner_id}}</th>
             <td>{{league_name}}</td>
             <td>{{number_of_teams}}</td>
-            td><button onclick="deletePerson({{id}})">Delete</button></td>
+            <td><button onclick="deletePerson({{id}})">Delete</button></td>
             <td><a href="/leagues/{{id}}">Update</a></td>
         </tr>
         {{/each}}
