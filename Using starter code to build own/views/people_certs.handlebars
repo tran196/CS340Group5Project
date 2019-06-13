@@ -1,0 +1,50 @@
+<html>
+    <a href='/index.html'>Home</a>
+    <a href='/leagues'>Manage Leagues</a>
+    <a href='/people'>Manage Teams</a>
+    <a href='/people_certs'>Manage Players</a>
+    <a href='/owners'>Manage Owners</a>
+{{#each foo}}
+{{this}}
+{{/each}}
+<h3>Add player to roster:</h3>
+<form id="addperson" action="/people_certs" method="post">
+    <!-- Player ID <input type="number" name="player_id"><br> -->
+    First name: <input type="text" name="fname"><br>
+    Last name: <input type="text" name="lname"><br>
+    Age: <input type="number" name="age"><br>
+    <input type="submit" value="Submit">
+ </form>
+<br/>
+
+<!-- 
+<form id='search_people' action='' method=''>
+- this form does not submit directly, the button handles all the interaction with backend 
+    <label> Search players starting with:</label> -->
+ <!--    <input id='first_name_search_string' type='text' name='first_name_search_string' value=''>
+    <input type="button" value="Search" onclick="searchPeopleByFirstName()">
+</form> -->
+
+<h3>Current players:</h3>
+<table>
+    <thead>
+        <!-- <th>Player ID</th> -->
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Age</th>
+    </thead>
+    <tbody>
+        {{#each people}}
+        <tr>
+            <!-- <td>{{player_id}}</td> -->
+            <td>{{fname}}</td>
+            <td>{{lname}}</td>
+            <td>{{age}}</td>
+            <!-- //need to add team name to sql dump file -->
+            <td><button onclick="deleteplayer({{id}})">Delete</button></td>
+            <td><a href="/people_certs/{{id}}">Update</a></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+</html>
