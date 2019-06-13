@@ -3,7 +3,7 @@ module.exports = function(){
     var router = express.Router();
 
     function getPlanets(res, mysql, context, complete){
-        mysql.pool.query("SELECT player_id, fname FROM nfl_football_players", function(error, results, fields){
+        mysql.pool.query("SELECT owner_id as id, fname, lname FROM fantasy_owners", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -14,9 +14,8 @@ module.exports = function(){
     }
 
 
-
     function getPeople(res, mysql, context, complete){
-        mysql.pool.query("SELECT * FROM fantasy_owners", function(error, results, fields){
+        mysql.pool.query("SELECT fantasy_owners.owner_id as id, fname, lname FROM fantasy_owners", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -25,42 +24,10 @@ module.exports = function(){
             complete();
         });
     }
-
-
-    function getPeoplebyHomeworld(req, res, mysql, context, complete){
-      var query = "SELECT bsg_people.character_id as id, fname, lname, bsg_planets.name AS homeworld, age FROM bsg_people INNER JOIN bsg_planets ON homeworld = bsg_planets.planet_id WHERE bsg_people.homeworld = ?";
-      console.log(req.params)
-      var inserts = [req.params.homeworld]
-      mysql.pool.query(query, inserts, function(error, results, fields){
-            if(error){
-                res.write(JSON.stringify(error));
-                res.end();
-            }
-            context.people = results;
-            complete();
-        });
-    }
-
-    /* Find people whose fname starts with a given string in the req */
-    function getPeopleWithNameLike(req, res, mysql, context, complete) {
-      //sanitize the input as well as include the % character
-       var query = "SELECT bsg_people.character_id as id, fname, lname, bsg_planets.name AS homeworld, age FROM bsg_people INNER JOIN bsg_planets ON homeworld = bsg_planets.planet_id WHERE bsg_people.fname LIKE " + mysql.pool.escape(req.params.s + '%');
-      console.log(query)
-
-      mysql.pool.query(query, function(error, results, fields){
-            if(error){
-                res.write(JSON.stringify(error));
-                res.end();
-            }
-            context.people = results;
-            complete();
-        });
-    }
-
 
 
     function getPerson(res, mysql, context, id, complete){
-        var sql = "SELECT character_id as id, fname, lname, homeworld, age FROM bsg_people WHERE character_id = ?";
+        var sql = "SELECT owner_id as id, fname, lname FROM fantasy_owners WHERE owner_id = ?";
         var inserts = [id];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
@@ -77,7 +44,7 @@ module.exports = function(){
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js"];
+        context.jsscripts = ["deleteOwner.js"];
         var mysql = req.app.get('mysql');
         getPeople(res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
@@ -90,47 +57,12 @@ module.exports = function(){
         }
     });
 
-    // Display all people from a given homeworld. Requires web based javascript to delete users with AJAX
-    router.get('/filter/:homeworld', function(req, res){
-        var callbackCount = 0;
-        var context = {};
-        context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js"];
-        var mysql = req.app.get('mysql');
-        getPeoplebyHomeworld(req,res, mysql, context, complete);
-        getPlanets(res, mysql, context, complete);
-        function complete(){
-            callbackCount++;
-            if(callbackCount >= 2){
-                res.render('owners', context);
-            }
-
-        }
-    });
-
-
-
-    // Display all people whose name starts with a given string. Requires web based javascript to delete users with AJAX
-    router.get('/search/:s', function(req, res){
-        var callbackCount = 0;
-        var context = {};
-        context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js"];
-        var mysql = req.app.get('mysql');
-        getPeopleWithNameLike(req, res, mysql, context, complete);
-        getPlanets(res, mysql, context, complete);
-        function complete(){
-            callbackCount++;
-            if(callbackCount >= 2){
-                res.render('owners', context);
-            }
-        }
-    });
-
      // Display one person for the specific purpose of updating people
 
     router.get('/:id', function(req, res){
         callbackCount = 0;
         var context = {};
-        context.jsscripts = ["selectedplanet.js", "updateperson.js"];
+        context.jsscripts = ["updateperson.js"];
         var mysql = req.app.get('mysql');
         getPerson(res, mysql, context, req.params.id, complete);
         getPlanets(res, mysql, context, complete);
@@ -168,8 +100,8 @@ module.exports = function(){
         var mysql = req.app.get('mysql');
         console.log(req.body)
         console.log(req.params.id)
-        var sql = "UPDATE bsg_people SET fname=?, lname=?, homeworld=?, age=? WHERE character_id=?";
-        var inserts = [req.body.fname, req.body.lname, req.body.homeworld, req.body.age, req.params.id];
+        var sql = "UPDATE fantasy_owners SET fname=?, lname=? WHERE owner_id=?";
+        var inserts = [req.body.fname, req.body.lname, req.params.id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(error)
@@ -186,7 +118,7 @@ module.exports = function(){
 
     router.delete('/:id', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "DELETE FROM bsg_people WHERE character_id = ?";
+        var sql = "DELETE FROM fantasy_owners WHERE owner_id = ?";
         var inserts = [req.params.id];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
@@ -200,5 +132,5 @@ module.exports = function(){
         })
     })
 
-    return router;
+   return router;
 }();

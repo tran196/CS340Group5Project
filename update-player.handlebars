@@ -1,7 +1,7 @@
 <html>
-<h1>Update League {{people_certs.id}}:</h1>
+<h1>Update Player {{person.id}}:</h1>
 <form id="update-player" action="/people_certs" method="post"> 
-    Firstname: <input type="number" name="fname"value="{{nfl.fname}}"><br> 
+    Firstname: <input type="text" name="fname"value="{{person.fname}}"><br> 
     Last Name: <input type="text" name="league_name" value="{{person.lname}}"><br> 
     Age: <input type="number" name="number_of_teams" value="{{person.age}}"><br>
 </form>

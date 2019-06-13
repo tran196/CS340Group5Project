@@ -15,7 +15,6 @@ module.exports = function(){
 
     function getPeople(res, mysql, context, complete){
          mysql.pool.query("SELECT fantasy_leagues.league_id as id, commissioner_id, league_name, number_of_teams FROM fantasy_leagues", function(error, results, fields){
-        // mysql.pool.query("SELECT fantasy_owners.owner_id as id, fname, lname, fantasy_teams.team_id AS homeworld, age FROM bsg_people INNER JOIN bsg_planets ON homeworld = bsg_planets.planet_id", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -131,7 +130,7 @@ module.exports = function(){
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('update-person', context);
+                res.render('update-owner', context);
             }
 
         }
@@ -175,28 +174,6 @@ module.exports = function(){
             }
         });
     });
-
-     /* this is from github 2 days ago */
-
-  
-    //  router.put('/:id', function(req, res){
-    //     var mysql = req.app.get('mysql');
-    //     console.log(req.body)
-    //     console.log(req.params.id)
-    //     var sql = "UPDATE fantasy_leagues SET commissioner_id=?, league_name=?, number_of_teams=? WHERE league_id = ?";
-    //     var inserts = [req.body.commissioner_id, req.body.name, req.body.number_of_teams, req.params.id];
-    //     sql = mysql.pool.query(sql,inserts,function(error, results, fields){
-    //         if(error){
-    //             console.log(error)
-    //             res.write(JSON.stringify(error));
-    //             res.end();
-    //         }else{
-    //             res.status(200);
-    //             res.end();
-    //         }
-    //     });
-    // });
-
 
       /* Route to delete a person, simply returns a 202 upon success. Ajax will handle this. */
 
