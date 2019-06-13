@@ -1,0 +1,8 @@
+<html>
+<h1>Update Owner {{person.id}}:</h1>
+<form id="updateowner" action="/owners" method="post"> 
+    Firstname: <input type="text" name="fname"value="{{person.fname}}"><br> 
+    Last Name: <input type="text" name="lname" value="{{person.lname}}"><br> 
+</form>
+<button onclick="updateowner({{person.id}})">Update</button>
+</html>

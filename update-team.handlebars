@@ -1,0 +1,8 @@
+<html>
+<h1>Update team {{person.id}}:</h1>
+<form id="update-team" action="/leagues" method="post"> 
+    League ID: <input type="number" name="league_id"value="{{person.league_id}}"><br> 
+    Owner Name: <input type="number" name="owner_id" value="{{person.owner_id}}"><br> 
+</form>
+<button onclick="updateteam({{person.id}})">Update</button>
+</html>
