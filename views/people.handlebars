@@ -1,10 +1,15 @@
 <html>
+    <a href='/index.html'>Home</a>
+    <a href='/leagues'>Manage Leagues</a>
+    <a href='/people'>Manage Teams</a>
+    <a href='/people_certs'>Manage Players</a>
+    <a href='/owners'>Manage Owners</a>
 {{#each foo}}
 {{this}}
 {{/each}}
 <h3>Add New Team:</h3>
 <form id="addperson" action="/people" method="post">
-    Team ID: <input type="number" name="team_id"><br>
+    <!-- Team ID: <input type="number" name="team_id"><br> -->
     League ID: <input type="number" name="league_id"><br>
     Owner ID: <input type="number" name="owner_id"><br>
     <input type="submit" value="Submit">
@@ -12,28 +17,28 @@
 <br/>
 
 
-<form id='search_people' action='' method=''>
-<!--- this form does not submit directly, the button handles all the interaction with backend -->
+<!-- <form id='search_people' action='' method=''>
+- this form does not submit directly, the button handles all the interaction with backend 
     <label> Search people for first name starting with:</label>
     <input id='first_name_search_string' type='text' name='first_name_search_string' value=''>
     <input type="button" value="Search" onclick="searchPeopleByFirstName()">
-</form>
+</form> -->
 
 <h3>Current people:</h3>
 <table>
     <thead>
-        <th>team_id</th>
+<!--         <th>team_id</th> -->
         <th>league_id</th>
         <th>owner_id</th>
     </thead>
     <tbody>
         {{#each people}}
         <tr>
-            <td>{{team_id}}</td>
+           <!--  <td>{{team_id}}</td> -->
             <td>{{league_id}}</td>
             <td>{{owner_id}}</td>
             <!-- //need to add team name to sql dump file -->
-            <td><button onclick="deletePerson({{id}})">Delete</button></td>
+            <td><button onclick="deleteteam({{id}})">Delete</button></td>
             <td><a href="/people/{{id}}">Update</a></td>
         </tr>
         {{/each}}

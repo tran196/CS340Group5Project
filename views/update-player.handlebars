@@ -1,0 +1,10 @@
+<html>
+<h1>Update Player {{person.id}}:</h1>
+<form id="update-player" action="/people_certs" method="post"> 
+    Firstname: <input type="text" name="fname"value="{{person.fname}}"><br> 
+    Last Name: <input type="text" name="lname" value="{{person.lname}}"><br> 
+    Age: <input type="number" name="age" value="{{person.age}}"><br>
+</form>
+<button onclick="updateplayer({{person.id}})">Update</button>
+</html>
+

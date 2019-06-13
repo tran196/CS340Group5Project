@@ -130,7 +130,7 @@ module.exports = function(){
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('update-owner', context);
+                res.render('update-person', context);
             }
 
         }
@@ -196,3 +196,4 @@ module.exports = function(){
 
     return router;
 }();
+

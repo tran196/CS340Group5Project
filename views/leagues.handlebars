@@ -1,10 +1,14 @@
 <html>
+    <a href='/index.html'>Home</a>
+    <a href='/leagues'>Manage Leagues</a>
+    <a href='/people'>Manage Teams</a>
+    <a href='/people_certs'>Manage Players</a>
+    <a href='/owners'>Manage Owners</a>
 {{#each foo}}
 {{this}}
 {{/each}}
 <h3>Add New League:</h3>
 <form id="addperson" action="/leagues" method="post">
-    League ID: <input type="number" name="league_id"><br>
     Commissioner ID: <input type="number" name="commissioner_id"><br>
     League Name: <input type="text" name="league_name"><br>
     Number of Teams: <input type="number" name="number_of_teams"><br>
@@ -23,7 +27,7 @@
 <h3>Current leagues:</h3>
 <table>
     <thead>
-        <th>league id</th>
+<!--         <th>league id</th> -->
         <th>Commissioner ID</th>
         <th>league name</th>
         <th>number of teams</th>
@@ -31,11 +35,11 @@
     <tbody>
         {{#each people}}
         <tr>
-            <td>{{league_id}}</td>
+<!--             <td>{{league_id}}</td> -->
             <th>{{commissioner_id}}</th>
             <td>{{league_name}}</td>
             <td>{{number_of_teams}}</td>
-            <<!-- <td><button onclick="deletePerson({{id}})">Delete</button></td>  -->
+            <td><button onclick="deletePerson({{id}})">Delete</button></td>
             <td><a href="/leagues/{{id}}">Update</a></td>
         </tr>
         {{/each}}
